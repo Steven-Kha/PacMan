@@ -10,7 +10,7 @@ class Game():
         self.screen = pygame.display.set_mode((pacSettings.screen_width , pacSettings.screen_height))
         pygame.display.set_caption("Pacman Portal")
 
-        self.maze = Maze(self.screen,"images/PacMaze.txt", "square")
+        self.maze = Maze(self.screen, "images/PacMaze.txt", "square")
 
     def play(self):
         eloop = EventLoop(finished=False)

@@ -4,7 +4,7 @@ from imagerect import ImageRect
 class Maze():
     RED = (255, 0, 0)
     BLACK = (0, 0, 0)
-    BRICK_SIZE = 13
+    BRICK_SIZE = 15
     def __init__(self, screen, mazefile, brickfile):#, portalfile, shieldfile, pointfile):
         self.screen = screen
         self.filename = mazefile
@@ -13,7 +13,10 @@ class Maze():
 
         self.bricks = []
         sz = Maze.BRICK_SIZE
+
         self.brick = ImageRect(screen, brickfile, sz, sz)
+        #                      screen, square, height, width
+
         self.deltax = self.deltay = Maze.BRICK_SIZE
 
         self.build()
