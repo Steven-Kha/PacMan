@@ -1,25 +1,29 @@
 import pygame
-from pygame.sprite import Group
+from maze import Maze
 from settings import Settings
+from eventloop import EventLoop
 
-import game_functions as gf
+class Game():
+    def __init__(self, pacSettings):
+        pygame.init()
 
-def run_game():
-    # Initialize game and create a screen object.
-    pygame.init()
-    ai_settings = Settings()
+        self.screen = pygame.display.set_mode((pacSettings.screen_width , pacSettings.screen_height))
+        pygame.display.set_caption("Pacman Portal")
 
-    screen = pygame.display.set_mode(
-        (ai_settings.screen_width, ai_settings.screen_height))
+        self.maze = Maze(self.screen,"images/PacMaze.txt", "square")
 
-    screen = pygame.display.set_mode((1200, 800))
-    pygame.display.set_caption("Pac Man 64")
+    def play(self):
+        eloop = EventLoop(finished=False)
 
-    # Start the main loop for the game
-    while True:
-        gf.check_events(ai_settings, screen)
+        while not eloop.finished:
+            eloop.checkEvents()
+            self.updateScreen()
 
-        gf.update_screen(ai_settings, screen)
+    def updateScreen(self):
+        self.screen.fill((0, 0, 0))
+        self.maze.blitme()
+        pygame.display.flip()
 
-
-run_game()
+pacSettings = Settings()
+game = Game(pacSettings)
+game.play()
