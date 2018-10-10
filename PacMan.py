@@ -1,5 +1,6 @@
 import pygame
 from maze import Maze
+from player import Player
 from settings import Settings
 from eventloop import EventLoop
 
@@ -12,6 +13,8 @@ class Game():
 
         self.maze = Maze(self.screen, "images/PacMaze.txt", "square")
 
+        self.player = Player(self.screen, 'images/PacMaze.txt', 'pacman0')
+
     def play(self):
         eloop = EventLoop(finished=False)
 
@@ -22,6 +25,7 @@ class Game():
     def updateScreen(self):
         self.screen.fill((0, 0, 0))
         self.maze.blitme()
+        self.player.blitme()
         pygame.display.flip()
 
 pacSettings = Settings()
