@@ -19,14 +19,19 @@ class Player():
         r = self.p1.rect
         w, h = r.width, r.height
 
-
-
-        # row = self.rows[28]
-        # col = row[24]
-        #
-        # if col == ".":
-
+        #                           x, y , width, height
         self.p1s.append(pygame.Rect(330, 410, w, h))
+
+        for rect in self.p1s:
+            self.x = float(rect.x)
+    def update(self, maze):
+        # add pacSettings to reverse movement
+        self.x += 1 * 3
+        for rect in self.p1s:
+            rect.x = self.x
+            for rect2 in maze.bricks:
+                if rect.colliderect(rect2):
+                    self.x -= 1*3
 
     def blitme(self):
         for rect in self.p1s:
