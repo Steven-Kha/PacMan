@@ -1,6 +1,9 @@
 import pygame
 from maze import Maze
-from player import Player
+from ghost import BlueGhost
+from ghost import RedGhost
+from ghost import YellowGhost
+from ghost import PinkGhost
 from settings import Settings
 from eventloop import EventLoop
 
@@ -13,8 +16,13 @@ class Game():
 
         self.maze = Maze(self.screen, "images/PacMaze.txt", "square")
 
-        self.player = Player(self.screen, 'images/PacMaze.txt', 'pacman0')
+        self.blueGhost = BlueGhost(self.screen, 'images/PacMaze.txt', 'BlueGhost0')
 
+        self.redGhost = RedGhost(self.screen, 'images/PacMaze.txt', 'RedGhost0')
+
+        self.yellowGhost = YellowGhost(self.screen, 'images/PacMaze.txt', 'YellowGhost0')
+
+        self.pinkGhost = PinkGhost(self.screen, 'images/PacMaze.txt', 'PinkGhost0')
 
     def play(self):
         eloop = EventLoop(finished=False)
@@ -27,11 +35,17 @@ class Game():
     def updateScreen(self):
         self.screen.fill((0, 0, 0))
         self.maze.blitme()
-        self.player.blitme()
+        self.blueGhost.blitme()
+        self.redGhost.blitme()
+        self.yellowGhost.blitme()
+        self.pinkGhost.blitme()
         pygame.display.flip()
 
     def player_update(self):
-        self.player.update(self.maze)
+        self.blueGhost.update(self.maze)
+        self.redGhost.update(self.maze)
+        self.yellowGhost.update(self.maze)
+        self.pinkGhost.update(self.maze)
 
 
 pacSettings = Settings()
