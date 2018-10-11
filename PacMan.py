@@ -1,5 +1,6 @@
 import pygame
 from maze import Maze
+from maze import Pellets
 from ghost import BlueGhost
 from ghost import RedGhost
 from ghost import YellowGhost
@@ -15,6 +16,8 @@ class Game():
         pygame.display.set_caption("Pacman Portal")
 
         self.maze = Maze(self.screen, "images/PacMaze.txt", "square")
+
+        self.pellets = Pellets(self.screen, "images/PacMaze.txt", "pacman0")
 
         self.blueGhost = BlueGhost(self.screen, 'images/PacMaze.txt', 'BlueGhost0')
 
@@ -35,6 +38,7 @@ class Game():
     def updateScreen(self):
         self.screen.fill((0, 0, 0))
         self.maze.blitme()
+        self.pellets.blitme()
         self.blueGhost.blitme()
         self.redGhost.blitme()
         self.yellowGhost.blitme()
