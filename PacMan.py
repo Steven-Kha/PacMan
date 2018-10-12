@@ -1,6 +1,7 @@
 import pygame
 from maze import Maze
 from maze import Pellets
+from player import Player
 from ghost import BlueGhost
 from ghost import RedGhost
 from ghost import YellowGhost
@@ -11,9 +12,10 @@ from eventloop import EventLoop
 class Game():
     def __init__(self, pacSettings):
         pygame.init()
-
         self.screen = pygame.display.set_mode((pacSettings.screen_width , pacSettings.screen_height))
         pygame.display.set_caption("Pacman Portal")
+
+        self.player = Player(self.screen, 'images/PacMaze.txt', 'pacman0')
 
         self.maze = Maze(self.screen, "images/PacMaze.txt", "square")
 
@@ -33,6 +35,7 @@ class Game():
         while not eloop.finished:
             eloop.checkEvents()
             self.updateScreen()
+            self.check_events()
             self.player_update()
 
     def updateScreen(self):
@@ -43,6 +46,7 @@ class Game():
         self.redGhost.blitme()
         self.yellowGhost.blitme()
         self.pinkGhost.blitme()
+        self.player.blitme()
         pygame.display.flip()
 
     def player_update(self):
@@ -50,6 +54,30 @@ class Game():
         self.redGhost.update(self.maze)
         self.yellowGhost.update(self.maze)
         self.pinkGhost.update(self.maze)
+        self.player.update(self.maze)
+
+    def check_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                print("Key was pressed down")
+                if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                    self.player.moving_right = True
+                elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
+                    self.player.moving_down = True
+                elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
+                    self.player.moving_left = True
+                elif event.key == pygame.K_w or event.key == pygame.K_UP:
+                    self.player.moving_up = True
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                    self.player.moving_right = False
+                elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
+                    self.player.moving_down = False
+                elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
+                    self.player.moving_left = False
+                elif event.key == pygame.K_w or event.key == pygame.K_UP:
+                    self.player.moving_up = False
+
 
 
 pacSettings = Settings()

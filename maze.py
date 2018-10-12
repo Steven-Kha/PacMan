@@ -17,6 +17,8 @@ class Maze():
         self.brick = ImageRect(screen, brickfile, sz, sz)
         #                      screen, square, height, width
 
+        self.rect = self.brick.get_rect()
+
         self.deltax = self.deltay = Maze.BRICK_SIZE
 
         self.build()

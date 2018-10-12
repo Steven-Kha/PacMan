@@ -16,4 +16,7 @@ class ImageRect:
     def __str__(self):
         return 'imagerect(' + str(self.image) + str(self.rect) + ')'
 
+    def get_rect(self):
+        return self.rect
+
     def blit(self): self.screen.blit(self.image, self.rect)
