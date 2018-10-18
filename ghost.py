@@ -43,25 +43,25 @@ class BlueGhost():
             self.x += 1 * self.x_direction
             for rect in self.p1s:
                 rect.x = self.x
-                for rect2 in maze.bricks:
+                for rect2 in maze.bricks: #rect2 is the rect of the bricks
                     if rect.colliderect(rect2):
                         self.collide_x = True
                         if self.x_direction > 0:
-                            print("I ran into the wall at the right")
+                            # print("I ran into the wall at the right")
                             self.image = pygame.image.load(self.blueGhosts[3])
 
                             # need to stop Pacman from touching the walls
                             # then get Pacman not colliding with anything
                             # -1 isn't good enough
-                            self.x = self.x - 3
+                            self.x = self.x -1
                             rect.x = self.x
                         elif self.x_direction < 0:
                             self.image = pygame.image.load(self.blueGhosts[0])
-                            print("I ran into the wall at the left")
-                            self.x = self.x + 3
+                            # print("I ran into the wall at the left")
+                            self.x = self.x + 1
                             rect.x = self.x
 
-                        print ( "self.number.x: " + str(self.x))
+                        # print("self.number.x: " + str(self.x))
 
                         # they can get stuck because pacman is too small
                         if time % 2 == 0:
@@ -81,14 +81,14 @@ class BlueGhost():
                             self.image = pygame.image.load(self.blueGhosts[1])
                             self.y = self.y - 3
                             rect.y = self.y
-                            print("I ran into the wall at the bottom")
+                            # print("I ran into the wall at the bottom")
                         elif self.y_direction < 0:
                             self.image = pygame.image.load(self.blueGhosts[2])
                             self.y = self.y + 3
                             rect.y = self.y
-                            print("I ran into the wall at the top")
+                            # print("I ran into the wall at the top")
                         self.collide_x = False
-                        print("self.number.y: " + str(self.y))
+                        # print("self.number.y: " + str(self.y))
 
                         if time % 2 == 0:
                             self.y_direction *= -1
@@ -145,7 +145,7 @@ class RedGhost():
                     if rect.colliderect(rect2):
                         self.collide_x = True
                         if self.x_direction > 0:
-                            print("I ran into the wall at the right")
+                            # print("I ran into the wall at the right")
                             # self.image = pygame.image.load(self.blueGhosts[3])
 
                             # need to stop Pacman from touching the walls
@@ -155,11 +155,11 @@ class RedGhost():
                             rect.x = self.x
                         elif self.x_direction < 0:
                             # self.image = pygame.image.load(self.blueGhosts[0])
-                            print("I ran into the wall at the left")
+                            # print("I ran into the wall at the left")
                             self.x = self.x + 3
                             rect.x = self.x
 
-                        print ( "self.number.x: " + str(self.x))
+                        # print("self.number.x: " + str(self.x))
 
                         # they can get stuck because pacman is too small
                         if time % 2 == 0:
@@ -179,14 +179,14 @@ class RedGhost():
                             # self.image = pygame.image.load(self.blueGhosts[1])
                             self.y = self.y - 3
                             rect.y = self.y
-                            print("I ran into the wall at the bottom")
+                            # print("I ran into the wall at the bottom")
                         elif self.y_direction < 0:
                             # self.image = pygame.image.load(self.blueGhosts[2])
                             self.y = self.y + 3
                             rect.y = self.y
-                            print("I ran into the wall at the top")
+                            # print("I ran into the wall at the top")
                         self.collide_x = False
-                        print("self.number.y: " + str(self.y))
+                        # print("self.number.y: " + str(self.y))
 
                         if time % 2 == 0:
                             self.y_direction *= -1
@@ -241,7 +241,7 @@ class YellowGhost():
                     if rect.colliderect(rect2):
                         self.collide_x = True
                         if self.x_direction > 0:
-                            print("I ran into the wall at the right")
+                            # print("I ran into the wall at the right")
                             # self.image = pygame.image.load(self.blueGhosts[3])
 
                             # need to stop Pacman from touching the walls
@@ -251,11 +251,11 @@ class YellowGhost():
                             rect.x = self.x
                         elif self.x_direction < 0:
                             # self.image = pygame.image.load(self.blueGhosts[0])
-                            print("I ran into the wall at the left")
+                            # print("I ran into the wall at the left")
                             self.x = self.x + 3
                             rect.x = self.x
 
-                        print ( "self.number.x: " + str(self.x))
+                        # print("self.number.x: " + str(self.x))
 
                         # they can get stuck because pacman is too small
                         if time % 2 == 0:
@@ -275,14 +275,14 @@ class YellowGhost():
                             # self.image = pygame.image.load(self.blueGhosts[1])
                             self.y = self.y - 3
                             rect.y = self.y
-                            print("I ran into the wall at the bottom")
+                            # print("I ran into the wall at the bottom")
                         elif self.y_direction < 0:
                             # self.image = pygame.image.load(self.blueGhosts[2])
                             self.y = self.y + 3
                             rect.y = self.y
-                            print("I ran into the wall at the top")
+                            # print("I ran into the wall at the top")
                         self.collide_x = False
-                        print("self.number.y: " + str(self.y))
+                        # print("self.number.y: " + str(self.y))
 
                         if time % 2 == 0:
                             self.y_direction *= -1
@@ -337,7 +337,7 @@ class PinkGhost():
                     if rect.colliderect(rect2):
                         self.collide_x = True
                         if self.x_direction > 0:
-                            print("I ran into the wall at the right")
+                            # print("I ran into the wall at the right")
                             # self.image = pygame.image.load(self.blueGhosts[3])
 
                             # need to stop Pacman from touching the walls
@@ -347,11 +347,11 @@ class PinkGhost():
                             rect.x = self.x
                         elif self.x_direction < 0:
                             # self.image = pygame.image.load(self.blueGhosts[0])
-                            print("I ran into the wall at the left")
+                            # print("I ran into the wall at the left")
                             self.x = self.x + 3
                             rect.x = self.x
 
-                        print ( "self.number.x: " + str(self.x))
+                        # print("self.number.x: " + str(self.x))
 
                         # they can get stuck because pacman is too small
                         if time % 2 == 0:
@@ -371,14 +371,14 @@ class PinkGhost():
                             # self.image = pygame.image.load(self.blueGhosts[1])
                             self.y = self.y - 3
                             rect.y = self.y
-                            print("I ran into the wall at the bottom")
+                            # print("I ran into the wall at the bottom")
                         elif self.y_direction < 0:
                             # self.image = pygame.image.load(self.blueGhosts[2])
                             self.y = self.y + 3
                             rect.y = self.y
-                            print("I ran into the wall at the top")
+                            # print("I ran into the wall at the top")
                         self.collide_x = False
-                        print("self.number.y: " + str(self.y))
+                        # print("self.number.y: " + str(self.y))
 
                         if time % 2 == 0:
                             self.y_direction *= -1

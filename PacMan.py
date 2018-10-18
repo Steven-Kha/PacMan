@@ -29,6 +29,8 @@ class Game():
 
         self.pinkGhost = PinkGhost(self.screen, 'images/PacMaze.txt', 'PinkGhost0')
 
+        self.spaceNumber = 1
+
     def play(self):
         eloop = EventLoop(finished=False)
 
@@ -59,15 +61,33 @@ class Game():
     def check_events(self):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
-                print("Key was pressed down")
+                # print("Key was pressed down")
                 if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                     self.player.moving_right = True
+                    self.player.moving_left = False
+                    self.player.moving_up = False
+                    self.player.moving_down = False
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
+                    self.player.moving_right = False
+                    self.player.moving_left = False
+                    self.player.moving_up = False
                     self.player.moving_down = True
                 elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
+                    self.player.moving_right = False
                     self.player.moving_left = True
+                    self.player.moving_up = False
+                    self.player.moving_down = False
                 elif event.key == pygame.K_w or event.key == pygame.K_UP:
+                    self.player.moving_right = False
+                    self.player.moving_left = False
                     self.player.moving_up = True
+                    self.player.moving_down = False
+                elif event.key == pygame.K_SPACE:
+                    print ("location: " + str(self.spaceNumber))
+                    print("player.x: " + str(self.player.x))
+                    print("player.y: " + str(self.player.y))
+                    self.spaceNumber += 1
+
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                     self.player.moving_right = False

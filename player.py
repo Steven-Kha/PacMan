@@ -1,7 +1,7 @@
 import pygame
 from imagerect import ImageRect
 class Player():
-    P1_SIZE = 30
+    P1_SIZE = 35
     def __init__(self, screen, mazefile, p1):
         self.screen = screen
         self.filename = mazefile
@@ -53,16 +53,18 @@ class Player():
                     if rect.colliderect(rect2):
                         # self.y_hit = self.y
                         # self.hit_right = True
-                        self.x = self.x - 2
+                        self.x = self.x - self.x_direction
                         rect.x = self.x
+                        return
 
             if self.moving_down:
                 self.y += self.y_direction
                 rect.y = self.y
                 for rect2 in maze.bricks:
                     if rect.colliderect(rect2):
-                        self.y = self.y - 2
+                        self.y = self.y - self.y_direction
                         rect.y = self.y
+                        return
 
             if self.moving_left:
                 self.x -= self.x_direction
@@ -71,16 +73,18 @@ class Player():
                     if rect.colliderect(rect2):
                         # self.y_hit = self.y
                         # self.hit_right = True
-                        self.x = self.x + 2
+                        self.x = self.x + self.x_direction
                         rect.x = self.x
+                        return
 
             if self.moving_up:
                 self.y -= self.y_direction
                 rect.y = self.y
                 for rect2 in maze.bricks:
                     if rect.colliderect(rect2):
-                        self.y = self.y + 2
+                        self.y = self.y + self.y_direction
                         rect.y = self.y
+                        return
 
 
 
