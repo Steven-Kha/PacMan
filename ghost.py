@@ -42,6 +42,7 @@ class BlueGhost():
         # even = False
         # odd = False
 
+
         if not self.collide_x:
             if self.x_direction < 0:
                 self.p1.image = pygame.image.load(self.blueGhosts[3])

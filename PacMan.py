@@ -6,6 +6,7 @@ from ghost import BlueGhost
 from ghost import RedGhost
 from ghost import YellowGhost
 from ghost import PinkGhost
+from maze import Nodes
 from settings import Settings
 from eventloop import EventLoop
 
@@ -21,6 +22,8 @@ class Game():
 
         self.pellets = Pellets(self.screen, "images/PacMaze.txt", "pacman0")
 
+        self.nodes = Nodes(self.screen, "images/PacMaze.txt", "node")
+
         self.blueGhost = BlueGhost(self.screen, 'images/PacMaze.txt', 'BlueGhost0')
 
         self.redGhost = RedGhost(self.screen, 'images/PacMaze.txt', 'RedGhost0')
@@ -35,13 +38,14 @@ class Game():
         eloop = EventLoop(finished=False)
 
         while not eloop.finished:
-            eloop.checkEvents()
+            eloop.checkEvents(self)
             self.updateScreen()
-            self.check_events()
+            # self.check_events()
             self.player_update()
 
     def updateScreen(self):
         self.screen.fill((0, 0, 0))
+        self.nodes.blitme()
         self.maze.blitme()
         self.pellets.blitme()
         self.blueGhost.blitme()
@@ -49,6 +53,7 @@ class Game():
         self.yellowGhost.blitme()
         self.pinkGhost.blitme()
         self.player.blitme()
+
         pygame.display.flip()
 
     def player_update(self):
@@ -57,47 +62,6 @@ class Game():
         self.yellowGhost.update(self.maze)
         self.pinkGhost.update(self.maze)
         self.player.update(self.maze)
-
-    def check_events(self):
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                # print("Key was pressed down")
-                if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-                    self.player.moving_right = True
-                    self.player.moving_left = False
-                    self.player.moving_up = False
-                    self.player.moving_down = False
-                elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
-                    self.player.moving_right = False
-                    self.player.moving_left = False
-                    self.player.moving_up = False
-                    self.player.moving_down = True
-                elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
-                    self.player.moving_right = False
-                    self.player.moving_left = True
-                    self.player.moving_up = False
-                    self.player.moving_down = False
-                elif event.key == pygame.K_w or event.key == pygame.K_UP:
-                    self.player.moving_right = False
-                    self.player.moving_left = False
-                    self.player.moving_up = True
-                    self.player.moving_down = False
-                elif event.key == pygame.K_SPACE:
-                    print ("location: " + str(self.spaceNumber))
-                    print("player.x: " + str(self.player.x))
-                    print("player.y: " + str(self.player.y))
-                    self.spaceNumber += 1
-
-            elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-                    self.player.moving_right = False
-                elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
-                    self.player.moving_down = False
-                elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
-                    self.player.moving_left = False
-                elif event.key == pygame.K_w or event.key == pygame.K_UP:
-                    self.player.moving_up = False
-
 
 
 pacSettings = Settings()

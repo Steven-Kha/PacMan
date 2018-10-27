@@ -14,7 +14,7 @@ class Player():
         self.moveLeft = ['images/pacman0.png', 'images/pacman1.png']
         self.moveUp = ['images/pacman5.png', 'images/pacman6.png']
         self.moveDown = ['images/pacman7.png', 'images/pacman8.png']
-
+        self.vistedNode = []
         self.players = []
         size = Player.P1_SIZE
 
