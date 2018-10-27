@@ -74,6 +74,7 @@ class Pellets():
         for rect in self.bricks:
             self.screen.blit(self.brick.image, rect)
 
+#wtf i added nodes
 class Nodes():
     BRICK_SIZE = 15
     def __init__(self, screen, mazefile, pacman):  # , portalfile, shieldfile, pointfile):
