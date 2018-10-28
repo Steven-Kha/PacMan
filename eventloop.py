@@ -29,22 +29,22 @@ def check_play_buttton(Game, mouse_x, mouse_y):
         Game.stats.game_active = True
 
 def check_keydown_events(event, player):
-    if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+    if not player.hit and event.key == pygame.K_RIGHT:
         player.moving_right = True
         player.moving_left = False
         player.moving_up = False
         player.moving_down = False
-    elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
+    elif not player.hit and event.key == pygame.K_DOWN:
         player.moving_right = False
         player.moving_left = False
         player.moving_up = False
         player.moving_down = True
-    elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
+    elif not player.hit and event.key == pygame.K_LEFT:
         player.moving_right = False
         player.moving_left = True
         player.moving_up = False
         player.moving_down = False
-    elif event.key == pygame.K_w or event.key == pygame.K_UP:
+    elif not player.hit and event.key == pygame.K_UP:
         player.moving_right = False
         player.moving_left = False
         player.moving_up = True

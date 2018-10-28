@@ -14,6 +14,11 @@ class Player():
         self.moveLeft = ['images/pacman0.png', 'images/pacman1.png']
         self.moveUp = ['images/pacman5.png', 'images/pacman6.png']
         self.moveDown = ['images/pacman7.png', 'images/pacman8.png']
+
+        self.dying = ['images/PacHit0.png', 'images/PacHit1.png', 'images/PacHit2.png',
+                      'images/PacHit3.png', 'images/PacHit4.png', 'images/PacHit5.png',
+                      'images/PacHit6.png']
+
         self.vistedNode = []
         self.players = []
         size = Player.P1_SIZE
@@ -35,6 +40,9 @@ class Player():
             self.x = float(rect.x)
             self.y = float(rect.y)
 
+        self.hit = False
+        self.animate = 0
+
         # movement flag
         self.moving_right = False
         self.moving_left = False
@@ -45,7 +53,15 @@ class Player():
         self.y_direction = 2
         self.animate = 0
 
-    def update(self, maze, pellets):
+    def center(self):
+        for rect in self.players:
+            self.x = 330
+            self.y = 410
+            rect.x = self.x
+            rect.y = self.y
+
+    def update(self, maze, pellets, blueGhost,
+                redGhost, yellowGhost, pinkGhost):
         # add pacSettings to reverse movement
         now = pygame.time.get_ticks()
         moveRightFrame = Timer(self.moveRight)
@@ -54,12 +70,66 @@ class Player():
         for rect in self.players:
             # if self.y_hit is not self.y:
             #     self.hit_right = False
+            for blueRect in blueGhost.p1s:
+                if rect.colliderect(blueRect):
+                    self.hit = True
 
+
+
+            for redRect in redGhost.reds:
+                if rect.colliderect(redRect):
+                    self.hit = True
+
+            for yellowRect in yellowGhost.yellows:
+                if rect.colliderect(yellowRect):
+                    self.hit = True
+
+
+            for pinkRect in pinkGhost.pinks:
+                if rect.colliderect(pinkRect):
+                    self.hit = True
+
+            if self.hit:
+                if self.animate == 0 and now % 55 == 0:
+                    self.p1.image = pygame.image.load(self.dying[0])
+                    self.animate += 1
+
+                elif self.animate == 1 and now % 55 == 0:
+                    self.animate += 1
+                    self.p1.image = pygame.image.load(self.dying[1])
+
+                elif self.animate == 2 and now % 55 == 0:
+                    self.animate += 1
+                    self.p1.image = pygame.image.load(self.dying[2])
+
+                elif self.animate == 3 and now % 55 == 0:
+                    self.animate += 1
+                    self.p1.image = pygame.image.load(self.dying[3])
+
+                elif self.animate == 4 and now % 55 == 0:
+                    self.animate += 1
+                    self.p1.image = pygame.image.load(self.dying[4])
+
+                elif self.animate == 5 and now % 55 == 0:
+                    self.animate += 1
+                    self.p1.image = pygame.image.load(self.dying[5])
+
+                elif self.animate == 6 and now % 55 == 0:
+                    self.animate += 1
+                    self.p1.image = pygame.image.load(self.dying[6])
+
+                elif self.animate == 7 and now % 55 == 0:
+                    self.p1.image = pygame.image.load(self.moveRight[1])
+                    self.hit = False
+                    self.animate = 0
+                    self.center()
+
+            # eat the pellets
             for pelletRect in pellets.pelletList:
                 if rect.colliderect(pelletRect):
                     pellets.pelletList.remove(pelletRect)
 
-
+            # moving around the map
             if self.moving_right:
                 if now % 15 == 0:
                     self.p1.image = pygame.image.load(self.moveRight[1])

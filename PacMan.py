@@ -97,7 +97,8 @@ class Game():
             self.redGhost.update(self.maze)
             self.yellowGhost.update(self.maze)
             self.pinkGhost.update(self.maze)
-            self.player.update(self.maze, self.pellets)
+            self.player.update(self.maze, self.pellets, self.blueGhost,
+                               self.redGhost, self.yellowGhost, self.pinkGhost)
         else:
             self.pac.update()
             self.blue.update()
