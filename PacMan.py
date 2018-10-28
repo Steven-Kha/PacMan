@@ -16,6 +16,7 @@ from cutscene import Blue
 from cutscene import Red
 from cutscene import Yellow
 from cutscene import Pink
+from scoreboard import Scoreboard
 class Game():
     def __init__(self, pacSettings):
         pygame.init()
@@ -52,6 +53,8 @@ class Game():
 
         self.stats = GameStats(pacSettings)
 
+        self.title = Scoreboard(self.screen, "pacmantitle")
+
     def play(self):
         eloop = EventLoop(finished=False)
 
@@ -74,6 +77,8 @@ class Game():
             self.yellow.blitme()
             self.pink.blitme()
             self.playButton.draw_button()
+            self.title.blitme()
+
         else:
             self.nodes.blitme()
             self.maze.blitme()
