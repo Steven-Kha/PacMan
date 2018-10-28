@@ -24,7 +24,7 @@ class BlueGhost():
         w, h = r.width, r.height
 
         #                           x, y , width, height
-        self.p1s.append(pygame.Rect(330, 410, w, h))
+        self.p1s.append(pygame.Rect(150, 120, w, h))
         self.x_direction = .5
         self.y_direction = .5
 
@@ -33,6 +33,10 @@ class BlueGhost():
         for rect in self.p1s:
             self.x = float(rect.x)
             self.y = float(rect.y)
+
+    # def djikstra(self, graph, start, goal):
+
+
     def update(self, maze):
 
         # add pacSettings to reverse movement
@@ -132,7 +136,7 @@ class RedGhost():
         w, h = r.width, r.height
 
         #                           x, y , width, height
-        self.reds.append(pygame.Rect(330, 410, w, h))
+        self.reds.append(pygame.Rect(525, 120, w, h))
         self.x_direction = -.5
         self.y_direction = .5
 
@@ -236,7 +240,7 @@ class YellowGhost():
         w, h = r.width, r.height
 
         #                           x, y , width, height
-        self.yellows.append(pygame.Rect(330, 410, w, h))
+        self.yellows.append(pygame.Rect(150, 630, w, h))
         self.x_direction = .5
         self.y_direction = -.5
 
@@ -340,7 +344,7 @@ class PinkGhost():
         w, h = r.width, r.height
 
         #                           x, y , width, height
-        self.pinks.append(pygame.Rect(330, 410, w, h))
+        self.pinks.append(pygame.Rect(525, 630, w, h))
         self.x_direction = -.5
         self.y_direction = -.5
 

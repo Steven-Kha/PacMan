@@ -7,7 +7,9 @@ from ghost import RedGhost
 from ghost import YellowGhost
 from ghost import PinkGhost
 from maze import Nodes
+from button import Button
 from settings import Settings
+from game_stats import GameStats
 from eventloop import EventLoop
 
 class Game():
@@ -32,7 +34,9 @@ class Game():
 
         self.pinkGhost = PinkGhost(self.screen, 'images/PacMaze.txt', 'PinkGhost0')
 
-        self.spaceNumber = 1
+        self.playButton = Button(pacSettings, self.screen, "Play")
+
+        self.stats = GameStats(pacSettings)
 
     def play(self):
         eloop = EventLoop(finished=False)
@@ -45,6 +49,9 @@ class Game():
 
     def updateScreen(self):
         self.screen.fill((0, 0, 0))
+        #put main menu here
+        # if game.stats_active
+
         self.nodes.blitme()
         self.maze.blitme()
         self.pellets.blitme()
@@ -53,6 +60,9 @@ class Game():
         self.yellowGhost.blitme()
         self.pinkGhost.blitme()
         self.player.blitme()
+        if self.stats.game_active == False:
+            self.screen.fill((0, 0, 0))
+            self.playButton.draw_button()
 
         pygame.display.flip()
 
