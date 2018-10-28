@@ -11,7 +11,11 @@ from button import Button
 from settings import Settings
 from game_stats import GameStats
 from eventloop import EventLoop
-
+from cutscene import PacMan
+from cutscene import Blue
+from cutscene import Red
+from cutscene import Yellow
+from cutscene import Pink
 class Game():
     def __init__(self, pacSettings):
         pygame.init()
@@ -36,6 +40,16 @@ class Game():
 
         self.playButton = Button(pacSettings, self.screen, "Play")
 
+        self.pac = PacMan(self.screen, "pacman0")
+
+        self.yellow = Yellow(self.screen, 'YellowGhost0')
+
+        self.pink = Pink(self.screen, 'PinkGhost0')
+
+        self.red = Red(self.screen, 'RedGhost0')
+
+        self.blue = Blue(self.screen, "BlueGhost0")
+
         self.stats = GameStats(pacSettings)
 
     def play(self):
@@ -52,26 +66,39 @@ class Game():
         #put main menu here
         # if game.stats_active
 
-        self.nodes.blitme()
-        self.maze.blitme()
-        self.pellets.blitme()
-        self.blueGhost.blitme()
-        self.redGhost.blitme()
-        self.yellowGhost.blitme()
-        self.pinkGhost.blitme()
-        self.player.blitme()
         if self.stats.game_active == False:
             self.screen.fill((0, 0, 0))
+            self.pac.blitme()
+            self.blue.blitme()
+            self.red.blitme()
+            self.yellow.blitme()
+            self.pink.blitme()
             self.playButton.draw_button()
+        else:
+            self.nodes.blitme()
+            self.maze.blitme()
+            self.pellets.blitme()
+            self.blueGhost.blitme()
+            self.redGhost.blitme()
+            self.yellowGhost.blitme()
+            self.pinkGhost.blitme()
+            self.player.blitme()
 
         pygame.display.flip()
 
     def player_update(self):
-        self.blueGhost.update(self.maze)
-        self.redGhost.update(self.maze)
-        self.yellowGhost.update(self.maze)
-        self.pinkGhost.update(self.maze)
-        self.player.update(self.maze)
+        if self.stats.game_active == True:
+            self.blueGhost.update(self.maze)
+            self.redGhost.update(self.maze)
+            self.yellowGhost.update(self.maze)
+            self.pinkGhost.update(self.maze)
+            self.player.update(self.maze)
+        else:
+            self.pac.update()
+            self.blue.update()
+            self.red.update()
+            self.yellow.update()
+            self.pink.update()
 
 
 pacSettings = Settings()
