@@ -27,7 +27,7 @@ class Game():
 
         self.maze = Maze(self.screen, "images/PacMaze.txt", "square")
 
-        self.pellets = Pellets(self.screen, "images/PacMaze.txt", "pacman0")
+        self.pellets = Pellets(self.screen, "images/PacMaze.txt", "pellets")
 
         self.nodes = Nodes(self.screen, "images/PacMaze.txt", "node")
 
@@ -97,7 +97,7 @@ class Game():
             self.redGhost.update(self.maze)
             self.yellowGhost.update(self.maze)
             self.pinkGhost.update(self.maze)
-            self.player.update(self.maze)
+            self.player.update(self.maze, self.pellets)
         else:
             self.pac.update()
             self.blue.update()

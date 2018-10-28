@@ -45,7 +45,7 @@ class Player():
         self.y_direction = 2
         self.animate = 0
 
-    def update(self, maze):
+    def update(self, maze, pellets):
         # add pacSettings to reverse movement
         now = pygame.time.get_ticks()
         moveRightFrame = Timer(self.moveRight)
@@ -54,6 +54,12 @@ class Player():
         for rect in self.players:
             # if self.y_hit is not self.y:
             #     self.hit_right = False
+
+            for pelletRect in pellets.pelletList:
+                if rect.colliderect(pelletRect):
+                    pellets.pelletList.remove(pelletRect)
+
+
             if self.moving_right:
                 if now % 15 == 0:
                     self.p1.image = pygame.image.load(self.moveRight[1])

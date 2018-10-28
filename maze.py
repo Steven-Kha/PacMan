@@ -40,7 +40,7 @@ class Maze():
             self.screen.blit(self.brick.image, rect)
 
 class Pellets():
-    BRICK_SIZE = 15
+    BRICK_SIZE = 7
 
     def __init__(self, screen, mazefile, pacman):  # , portalfile, shieldfile, pointfile):
         self.screen = screen
@@ -48,8 +48,8 @@ class Pellets():
         with open(self.filename, "r") as f:
             self.rows = f.readlines()
 
-        self.bricks = []
-        sz = Maze.BRICK_SIZE
+        self.pelletList = []
+        sz = Pellets.BRICK_SIZE
 
         self.brick = ImageRect(screen, pacman, sz, sz)
         #                      screen, square, height, width
@@ -68,10 +68,10 @@ class Pellets():
             for ncol in range(len(row)):
                 col = row[ncol]
                 if col == "O" or col == 'Y':
-                    self.bricks.append(pygame.Rect(ncol * dx, nrow * dy, w, h))
+                    self.pelletList.append(pygame.Rect(ncol * dx, nrow * dy, w, h))
 
     def blitme(self):
-        for rect in self.bricks:
+        for rect in self.pelletList:
             self.screen.blit(self.brick.image, rect)
 
 #wtf i added nodes

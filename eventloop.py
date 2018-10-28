@@ -49,6 +49,8 @@ def check_keydown_events(event, player):
         player.moving_left = False
         player.moving_up = True
         player.moving_down = False
+    elif event.key == pygame.K_ESCAPE:
+        sys.exit()
 
 def check_keyup_events(event, player):
     if event.key == pygame.K_d or event.key == pygame.K_RIGHT:

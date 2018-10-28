@@ -28,19 +28,19 @@ class PacMan():
         now = pygame.time.get_ticks()
         self.x += 1 * self.x_direction
         if self.x_direction > 0:
-            if now % 101 == 0:
+            if now % 51 == 0:
                 self.pacMan.image = pygame.image.load(self.moveRight[1])
                 # self.animate += 1
-            elif now % 204 == 0:
+            elif now % 106 == 0:
                 self.pacMan.image = pygame.image.load(self.moveRight[0])
         else:
-            if now % 101 == 0:
+            if now % 51 == 0:
                 self.pacMan.image = pygame.image.load(self.moveLeft[1])
-            elif now % 204 == 0:
+            elif now % 106 == 0:
                 self.pacMan.image = pygame.image.load(self.moveLeft[0])
         for rect in self.PACCY:
             rect.x = self.x
-            if rect.x >= 690:
+            if rect.x >= 680:
                 self.x_direction *= -1
 
                 # del self
