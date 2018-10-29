@@ -6,19 +6,8 @@
 0.35 make each ghost move differently <br>
 0.4 draw pellet location in maze txt <br>
 0.5 make pacman move <br>
+0.6 Add intro cutscene <br>
+0.75 Pacman moving and dying animation <br>
+0.8 Ghosts' eyes changes per direction
 
-update set: <br>
-No flags
 
-
-Next step: <br>
-Pacman needs to move on his own
-Track where Pacman can only move up and down
-print self.x self.y 
-
-shortest distance: <br>
-djikstra algorithm <br>
-implementation of dijkstra in python by Ian Sullivan <br>
-https://www.youtube.com/watch?v=IG1QioWSXRI
-
-ask for animation code and <br>
