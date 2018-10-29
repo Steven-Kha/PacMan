@@ -26,6 +26,8 @@ def check_play_buttton(Game, mouse_x, mouse_y):
     button_clicked = Game.playButton.rect.collidepoint(mouse_x, mouse_y)
     hiscore_clicked = Game.playButton.hi_rect.collidepoint(mouse_x, mouse_y)
     if button_clicked and not Game.stats.game_active:
+        pygame.mixer.music.load('music\pacman_beginning.wav')
+        pygame.mixer.music.play()
         pygame.mouse.set_visible(False)
         Game.stats.game_active = True
         Game.scores.prep_score()
@@ -37,21 +39,29 @@ def check_play_buttton(Game, mouse_x, mouse_y):
 
 def check_keydown_events(event, player):
     if not player.hit and event.key == pygame.K_RIGHT:
+        pygame.mixer.music.load('music\pacman_chomp.wav')
+        pygame.mixer.music.play()
         player.moving_right = True
         player.moving_left = False
         player.moving_up = False
         player.moving_down = False
     elif not player.hit and event.key == pygame.K_DOWN:
+        pygame.mixer.music.load('music\pacman_chomp.wav')
+        pygame.mixer.music.play()
         player.moving_right = False
         player.moving_left = False
         player.moving_up = False
         player.moving_down = True
     elif not player.hit and event.key == pygame.K_LEFT:
+        pygame.mixer.music.load('music\pacman_chomp.wav')
+        pygame.mixer.music.play()
         player.moving_right = False
         player.moving_left = True
         player.moving_up = False
         player.moving_down = False
     elif not player.hit and event.key == pygame.K_UP:
+        pygame.mixer.music.load('music\pacman_chomp.wav')
+        pygame.mixer.music.play()
         player.moving_right = False
         player.moving_left = False
         player.moving_up = True

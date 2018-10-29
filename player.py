@@ -75,19 +75,27 @@ class Player():
             #PacMan hit by ghosts
             for blueRect in blueGhost.p1s:
                 if rect.colliderect(blueRect):
+                    pygame.mixer.music.load('music\pacman_death.wav')
+                    pygame.mixer.music.play()
                     self.hit = True
 
             for redRect in redGhost.reds:
                 if rect.colliderect(redRect):
+                    pygame.mixer.music.load('music\pacman_death.wav')
+                    pygame.mixer.music.play()
                     self.hit = True
 
             for yellowRect in yellowGhost.yellows:
                 if rect.colliderect(yellowRect):
+                    pygame.mixer.music.load('music\pacman_death.wav')
+                    pygame.mixer.music.play()
                     self.hit = True
 
 
             for pinkRect in pinkGhost.pinks:
                 if rect.colliderect(pinkRect):
+                    pygame.mixer.music.load('music\pacman_death.wav')
+                    pygame.mixer.music.play()
                     self.hit = True
 
 
