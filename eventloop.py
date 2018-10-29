@@ -24,12 +24,16 @@ class EventLoop():
 
 def check_play_buttton(Game, mouse_x, mouse_y):
     button_clicked = Game.playButton.rect.collidepoint(mouse_x, mouse_y)
+    hiscore_clicked = Game.playButton.hi_rect.collidepoint(mouse_x, mouse_y)
     if button_clicked and not Game.stats.game_active:
         pygame.mouse.set_visible(False)
         Game.stats.game_active = True
         Game.scores.prep_score()
         Game.scores.prep_level()
         Game.scores.prep_high_score()
+    if hiscore_clicked and not Game.stats.game_active:
+        Game.stats.high_score_active = True
+
 
 def check_keydown_events(event, player):
     if not player.hit and event.key == pygame.K_RIGHT:

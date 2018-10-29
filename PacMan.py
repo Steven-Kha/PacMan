@@ -1,4 +1,5 @@
 import pygame
+
 from maze import Maze
 from maze import Pellets
 from player import Player
@@ -41,6 +42,8 @@ class Game():
 
         self.pinkGhost = PinkGhost(self.screen, 'images/PacMaze.txt', 'PinkGhost0')
 
+        self.stats = GameStats(pacSettings)
+
         self.playButton = Button(pacSettings, self.screen, "Play")
 
         self.pac = PacMan(self.screen, "pacman0")
@@ -53,10 +56,14 @@ class Game():
 
         self.blue = Blue(self.screen, "BlueGhost0")
 
-        self.stats = GameStats(pacSettings)
+        self.oldHiscore = 0
 
         self.scores = Scores(pacSettings, self.screen, self.stats)
 
+        fo = open("foo.txt", "r+")
+        self.stats.high_score = int(fo.readline())
+        fo.close()
+        self.oldHiscore = self.stats.high_score
         self.title = Scoreboard(self.screen, "pacmantitle")
 
     def play(self):
@@ -74,6 +81,8 @@ class Game():
         # if game.stats_active
 
         if self.stats.game_active == False:
+            self.player.lives = 2
+            self.stats.score = 0
             self.screen.fill((0, 0, 0))
             self.pac.blitme()
             self.blue.blitme()
@@ -82,6 +91,10 @@ class Game():
             self.pink.blitme()
             self.playButton.draw_button()
             self.title.blitme()
+            if self.stats.high_score_active == True:
+                self.playButton.prep_hiscores(str(self.stats.high_score))
+                self.playButton.show_hiscore()
+
 
         else:
             self.nodes.blitme()
@@ -98,6 +111,14 @@ class Game():
 
     def player_update(self):
         if self.stats.game_active == True:
+            if self.player.lives == 0:
+                self.stats.game_active = False
+                self.pellets.build()
+                pygame.mouse.set_visible(True)
+                if self.oldHiscore < self.stats.high_score:
+                    foo = open("foo.txt", "w")
+                    foo.write(str(self.stats.high_score))
+                    foo.close()
             self.blueGhost.update(self.maze)
             self.redGhost.update(self.maze)
             self.yellowGhost.update(self.maze)
@@ -112,6 +133,7 @@ class Game():
             self.red.update()
             self.yellow.update()
             self.pink.update()
+
 
 
 pacSettings = Settings()

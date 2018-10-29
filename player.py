@@ -53,6 +53,8 @@ class Player():
         self.y_direction = 2
         self.animate = 0
 
+        self.lives = 2
+
     def center(self):
         for rect in self.players:
             self.x = 330
@@ -88,11 +90,14 @@ class Player():
                 if rect.colliderect(pinkRect):
                     self.hit = True
 
+
             # hit animation
             if self.hit:
+
                 if self.animate == 0 and now % 55 == 0:
                     self.p1.image = pygame.image.load(self.dying[0])
                     self.animate += 1
+
 
                 elif self.animate == 1 and now % 55 == 0:
                     self.animate += 1
@@ -123,6 +128,7 @@ class Player():
                     self.hit = False
                     self.animate = 0
                     self.center()
+                    self.lives -= 1
 
             # eat the pellets
             for pelletRect in pellets.pelletList:
