@@ -61,20 +61,19 @@ class Player():
             rect.y = self.y
 
     def update(self, maze, pellets, blueGhost,
-                redGhost, yellowGhost, pinkGhost):
+                redGhost, yellowGhost, pinkGhost,
+               stats, scores):
         # add pacSettings to reverse movement
         now = pygame.time.get_ticks()
         moveRightFrame = Timer(self.moveRight)
 
 
         for rect in self.players:
-            # if self.y_hit is not self.y:
-            #     self.hit_right = False
+
+            #PacMan hit by ghosts
             for blueRect in blueGhost.p1s:
                 if rect.colliderect(blueRect):
                     self.hit = True
-
-
 
             for redRect in redGhost.reds:
                 if rect.colliderect(redRect):
@@ -89,6 +88,7 @@ class Player():
                 if rect.colliderect(pinkRect):
                     self.hit = True
 
+            # hit animation
             if self.hit:
                 if self.animate == 0 and now % 55 == 0:
                     self.p1.image = pygame.image.load(self.dying[0])
@@ -128,6 +128,13 @@ class Player():
             for pelletRect in pellets.pelletList:
                 if rect.colliderect(pelletRect):
                     pellets.pelletList.remove(pelletRect)
+                    stats.score += 100
+                    scores.prep_score()
+
+            if stats.score > stats.high_score:
+                stats.high_score = stats.score
+                scores.prep_high_score()
+
 
             # moving around the map
             if self.moving_right:
@@ -190,9 +197,6 @@ class Player():
                         self.y = self.y + self.y_direction
                         rect.y = self.y
                         return
-
-
-
 
     def blitme(self):
         for rect in self.players:

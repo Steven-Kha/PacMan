@@ -17,6 +17,8 @@ from cutscene import Red
 from cutscene import Yellow
 from cutscene import Pink
 from scoreboard import Scoreboard
+from scores import Scores
+
 class Game():
     def __init__(self, pacSettings):
         pygame.init()
@@ -53,6 +55,8 @@ class Game():
 
         self.stats = GameStats(pacSettings)
 
+        self.scores = Scores(pacSettings, self.screen, self.stats)
+
         self.title = Scoreboard(self.screen, "pacmantitle")
 
     def play(self):
@@ -88,6 +92,7 @@ class Game():
             self.yellowGhost.blitme()
             self.pinkGhost.blitme()
             self.player.blitme()
+            self.scores.show_score()
 
         pygame.display.flip()
 
@@ -98,7 +103,9 @@ class Game():
             self.yellowGhost.update(self.maze)
             self.pinkGhost.update(self.maze)
             self.player.update(self.maze, self.pellets, self.blueGhost,
-                               self.redGhost, self.yellowGhost, self.pinkGhost)
+                               self.redGhost, self.yellowGhost, self.pinkGhost,
+                               self.stats, self.scores)
+            self.scores.show_score()
         else:
             self.pac.update()
             self.blue.update()

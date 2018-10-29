@@ -27,6 +27,9 @@ def check_play_buttton(Game, mouse_x, mouse_y):
     if button_clicked and not Game.stats.game_active:
         pygame.mouse.set_visible(False)
         Game.stats.game_active = True
+        Game.scores.prep_score()
+        Game.scores.prep_level()
+        Game.scores.prep_high_score()
 
 def check_keydown_events(event, player):
     if not player.hit and event.key == pygame.K_RIGHT:
