@@ -8,6 +8,7 @@
 0.5 make pacman move <br>
 0.6 Add intro cutscene <br>
 0.75 Pacman moving and dying animation <br>
-0.8 Ghosts' eyes changes per direction
+0.8 Ghosts' eyes changes per direction <br>
+0.9 added music and sound effects <br>
 
 
