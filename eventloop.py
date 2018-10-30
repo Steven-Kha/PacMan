@@ -38,30 +38,31 @@ def check_play_buttton(Game, mouse_x, mouse_y):
 
 
 def check_keydown_events(event, player):
+
     if not player.hit and event.key == pygame.K_RIGHT:
         pygame.mixer.music.load('music\pacman_chomp.wav')
-        pygame.mixer.music.play()
+        pygame.mixer.music.play(-1)
         player.moving_right = True
         player.moving_left = False
         player.moving_up = False
         player.moving_down = False
     elif not player.hit and event.key == pygame.K_DOWN:
         pygame.mixer.music.load('music\pacman_chomp.wav')
-        pygame.mixer.music.play()
+        pygame.mixer.music.play(-1)
         player.moving_right = False
         player.moving_left = False
         player.moving_up = False
         player.moving_down = True
     elif not player.hit and event.key == pygame.K_LEFT:
         pygame.mixer.music.load('music\pacman_chomp.wav')
-        pygame.mixer.music.play()
+        pygame.mixer.music.play(-1)
         player.moving_right = False
         player.moving_left = True
         player.moving_up = False
         player.moving_down = False
     elif not player.hit and event.key == pygame.K_UP:
         pygame.mixer.music.load('music\pacman_chomp.wav')
-        pygame.mixer.music.play()
+        pygame.mixer.music.play(-1)
         player.moving_right = False
         player.moving_left = False
         player.moving_up = True
@@ -70,6 +71,7 @@ def check_keydown_events(event, player):
         sys.exit()
 
 def check_keyup_events(event, player):
+    pygame.mixer.music.pause()
     if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
         player.moving_right = False
     elif event.key == pygame.K_s or event.key == pygame.K_DOWN:

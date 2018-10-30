@@ -17,7 +17,6 @@ class BlueGhost():
         self.p1s = []
         size = BlueGhost.P1_SIZE
 
-
         self.curFrame = Timer(self.blueGhosts)
         self.p1 = ImageRect(screen, p1, size, size)
         r = self.p1.rect
@@ -34,9 +33,6 @@ class BlueGhost():
             self.x = float(rect.x)
             self.y = float(rect.y)
 
-    # def djikstra(self, graph, start, goal):
-
-
     def update(self, maze):
 
         # add pacSettings to reverse movement
@@ -45,7 +41,6 @@ class BlueGhost():
         # randx = random.randint(1, 10)
         # even = False
         # odd = False
-
 
         if not self.collide_x:
             if self.x_direction < 0:
@@ -60,27 +55,20 @@ class BlueGhost():
                         self.collide_x = True
                         if self.x_direction > 0:
                             # print("I ran into the wall at the right")
-
-
                             # need to stop Pacman from touching the walls
                             # then get Pacman not colliding with anything
                             # -1 isn't good enough
                             self.x = self.x -1
                             rect.x = self.x
                         elif self.x_direction < 0:
-
                             # print("I ran into the wall at the left")
                             self.x = self.x + 1
                             rect.x = self.x
-
                         # print("self.number.x: " + str(self.x))
-
                         # they can get stuck because pacman is too small
                         if time % 2 == 0:
                             self.x_direction *= -1
-
                         # pygame.time.delay(100)
-
 
         if self.collide_x:
             if self.y_direction < 0:
@@ -115,9 +103,8 @@ class BlueGhost():
         for rect in self.p1s:
             self.screen.blit(self.p1.image, rect)
 
-
-
 class RedGhost():
+
     P1_SIZE = 33
     def __init__(self, screen, mazefile, red):
         self.screen = screen
@@ -253,10 +240,6 @@ class YellowGhost():
     def update(self, maze):
         # add pacSettings to reverse movement
         time = pygame.time.get_ticks()
-        # randx = random.randint(1, 10)
-        # even = False
-        # odd = False
-
         if not self.collide_x:
             if self.x_direction < 0:
                 self.yellow.image = pygame.image.load(self.yellowGhosts[1])
@@ -291,7 +274,6 @@ class YellowGhost():
 
                         # pygame.time.delay(100)
 
-
         if self.collide_x:
             if self.y_direction < 0:
                 self.yellow.image = pygame.image.load(self.yellowGhosts[3])
@@ -320,7 +302,6 @@ class YellowGhost():
                             self.y_direction *= -1
 
                         # pygame.time.delay(100)
-
     def blitme(self):
         for rect in self.yellows:
             self.screen.blit(self.yellow.image, rect)
@@ -342,7 +323,6 @@ class PinkGhost():
 
         r = self.pink.rect
         w, h = r.width, r.height
-
         #                           x, y , width, height
         self.pinks.append(pygame.Rect(525, 630, w, h))
         self.x_direction = -.5
@@ -393,9 +373,7 @@ class PinkGhost():
                         # they can get stuck because pacman is too small
                         if time % 2 == 0:
                             self.x_direction *= -1
-
                         # pygame.time.delay(100)
-
 
         if self.collide_x:
             if self.y_direction < 0:
@@ -407,7 +385,6 @@ class PinkGhost():
                 rect.y = self.y
                 for rect2 in maze.bricks:
                     if rect.colliderect(rect2):
-
                         if self.y_direction > 0:
                             # self.image = pygame.image.load(self.blueGhosts[1])
                             self.y = self.y - 3
@@ -423,7 +400,6 @@ class PinkGhost():
 
                         if time % 2 == 0:
                             self.y_direction *= -1
-
                         # pygame.time.delay(100)
 
     def blitme(self):
